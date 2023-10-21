@@ -2,8 +2,8 @@
 - [x] Bit
 - [x] Register
 - [x] RAM8
-- [X] RAM64
-- [ ] RAM512
-- [ ] RAM4K
-- [ ] RAM16K
-- [ ] PC
+- [x] RAM64
+- [x] RAM512
+- [x] RAM4K
+- [x] RAM16K
+- [x] PC
