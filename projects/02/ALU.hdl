@@ -67,5 +67,5 @@ CHIP ALU {
         Or8Way(in=tmp1, out=tmp11);
         Or8Way(in=tmp2, out=tmp22);
         Or(a=tmp11, b=tmp22, out=tmp11ortmp22);
-        Mux(a=true, b=false, sel=tmp11ortmp22, out=zr);
+        Not(in=tmp11ortmp22, out=zr);
 }
