@@ -58,11 +58,12 @@ CHIP ALU {
         Mux16(a=xandy, b=xplusy, sel=f, out=almostout);
 
         Not16(in=almostout, out=notout);
-        Mux16(a=almostout, b=notout, sel=no, out=out, out=flagfull,out[15]=negbit);
+        Mux16(a=almostout, b=notout, sel=no, 
+            out=out, 
+            out[0..7]=tmp1,
+            out[8..15]=tmp2,
+            out[15]=ng);
 
-        And(a=negbit, b=true, out=ng);
-        
-        And16(a=flagfull, b=true, out[0..7]=tmp1, out[8..15]=tmp2);
         Or8Way(in=tmp1, out=tmp11);
         Or8Way(in=tmp2, out=tmp22);
         Or(a=tmp11, b=tmp22, out=tmp11ortmp22);
