@@ -2,14 +2,17 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/01/Not.hdl
- /**
+
+/**
  * Not gate:
- * out = ((in == 0), 1, 0)
+ * out = not in
  */
+
 CHIP Not {
     IN in;
     OUT out;
 
     PARTS:
-    //// Replace this comment with your code.
+        Nand(a=in, b=in, out=out);
+    // Put your code here:
 }

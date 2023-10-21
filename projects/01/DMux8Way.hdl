@@ -2,17 +2,54 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/01/DMux8Way.hdl
+
 /**
  * 8-way demultiplexor:
- * [a, b, c, d, e, f, g, h] = [in, 0, 0, 0, 0, 0, 0, 0] if sel == 000
- *                            [0, in, 0, 0, 0, 0, 0, 0] if sel == 001
- *                            ...
- *                            [0, 0, 0, 0, 0, 0, 0, in] if sel == 111
+ * {a, b, c, d, e, f, g, h} = {in, 0, 0, 0, 0, 0, 0, 0} if sel == 000
+ *                            {0, in, 0, 0, 0, 0, 0, 0} if sel == 001
+ *                            etc.
+ *                            {0, 0, 0, 0, 0, 0, 0, in} if sel == 111
  */
+
 CHIP DMux8Way {
     IN in, sel[3];
     OUT a, b, c, d, e, f, g, h;
 
     PARTS:
-    //// Replace this comment with your code.
+    // Put your code here:
+    Not(in=sel[0], out=notsel0);
+    Not(in=sel[1], out=notsel1);
+    Not(in=sel[2], out=notsel2);
+
+    And(a=in, b=notsel0, out=tmp0);
+    And(a=tmp0, b=notsel1, out=tmpp0);
+    And(a=tmpp0, b=notsel2, out=a);
+
+    And(a=in, b=sel[0], out=tmp1);
+    And(a=tmp1, b=notsel1, out=tmpp1);
+    And(a=tmpp1, b=notsel2, out=b);
+    
+    And(a=in, b=notsel0, out=tmp2);
+    And(a=tmp2, b=sel[1], out=tmpp2);
+    And(a=tmpp2, b=notsel2, out=c);
+
+    And(a=in, b=sel[0], out=tmp3);
+    And(a=tmp3, b=sel[1], out=tmpp3);
+    And(a=tmpp3, b=notsel2, out=d);
+
+    And(a=in, b=notsel0, out=tmp4);
+    And(a=tmp4, b=notsel1, out=tmpp4);
+    And(a=tmpp4, b=sel[2], out=e);
+
+    And(a=in, b=sel[0], out=tmp5);
+    And(a=tmp5, b=notsel1, out=tmpp5);
+    And(a=tmpp5, b=sel[2], out=f);
+
+    And(a=in, b=notsel0, out=tmp6);
+    And(a=tmp6, b=sel[1], out=tmpp6);
+    And(a=tmpp6, b=sel[2], out=g);
+
+    And(a=in, b=sel[0], out=tmp7);
+    And(a=tmp7, b=sel[1], out=tmpp7);
+    And(a=tmpp7, b=sel[2], out=h);
 }

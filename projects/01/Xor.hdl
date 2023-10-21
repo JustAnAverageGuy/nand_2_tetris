@@ -2,14 +2,21 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/01/Xor.hdl
+
 /**
  * Exclusive-or gate:
- * out = (((a == 0) & (b = 1)) | ((a == 1) & (b = 0)), 1, 0)
+ * out = not (a == b)
  */
+
 CHIP Xor {
     IN a, b;
     OUT out;
 
     PARTS:
-    //// Replace this comment with your code.
+        Nand(a=a, b=b, out=nand);
+        Nand(a=a, b=nand, out=left);
+        Nand(a=b, b=nand, out=right);
+        Nand(a=left, b=right, out=out);
+
+    // Put your code here:
 }
