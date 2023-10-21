@@ -14,5 +14,39 @@ CHIP Register {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    // Just do the single bit implementation for 16-bits
+    // Note: can't just replace Mux with Mux16 since DFF is a single bit and internal pins can't be splitted :( 
+        Mux(a=outprev0, b=in[0], sel=load, out=muxout0);
+        Mux(a=outprev1, b=in[1], sel=load, out=muxout1);
+        Mux(a=outprev2, b=in[2], sel=load, out=muxout2);
+        Mux(a=outprev3, b=in[3], sel=load, out=muxout3);
+        Mux(a=outprev4, b=in[4], sel=load, out=muxout4);
+        Mux(a=outprev5, b=in[5], sel=load, out=muxout5);
+        Mux(a=outprev6, b=in[6], sel=load, out=muxout6);
+        Mux(a=outprev7, b=in[7], sel=load, out=muxout7);
+        Mux(a=outprev8, b=in[8], sel=load, out=muxout8);
+        Mux(a=outprev9, b=in[9], sel=load, out=muxout9);
+        Mux(a=outprev10, b=in[10], sel=load, out=muxout10);
+        Mux(a=outprev11, b=in[11], sel=load, out=muxout11);
+        Mux(a=outprev12, b=in[12], sel=load, out=muxout12);
+        Mux(a=outprev13, b=in[13], sel=load, out=muxout13);
+        Mux(a=outprev14, b=in[14], sel=load, out=muxout14);
+        Mux(a=outprev15, b=in[15], sel=load, out=muxout15);
+
+        DFF(in=muxout0, out=outprev0, out=out[0]);
+        DFF(in=muxout1, out=outprev1, out=out[1]);
+        DFF(in=muxout2, out=outprev2, out=out[2]);
+        DFF(in=muxout3, out=outprev3, out=out[3]);
+        DFF(in=muxout4, out=outprev4, out=out[4]);
+        DFF(in=muxout5, out=outprev5, out=out[5]);
+        DFF(in=muxout6, out=outprev6, out=out[6]);
+        DFF(in=muxout7, out=outprev7, out=out[7]);
+        DFF(in=muxout8, out=outprev8, out=out[8]);
+        DFF(in=muxout9, out=outprev9, out=out[9]);
+        DFF(in=muxout10, out=outprev10, out=out[10]);
+        DFF(in=muxout11, out=outprev11, out=out[11]);
+        DFF(in=muxout12, out=outprev12, out=out[12]);
+        DFF(in=muxout13, out=outprev13, out=out[13]);
+        DFF(in=muxout14, out=outprev14, out=out[14]);
+        DFF(in=muxout15, out=outprev15, out=out[15]);
 }

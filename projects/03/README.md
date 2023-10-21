@@ -1,6 +1,6 @@
 - [x] DFF
 - [x] Bit
-- [ ] Register
+- [x] Register
 - [ ] RAM8
 - [ ] RAM64
 - [ ] RAM512
