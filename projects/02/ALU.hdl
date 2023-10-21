@@ -43,28 +43,28 @@ CHIP ALU {
 
     PARTS:
    // Put you code here:
-    Not16(in=zxx, out=znxi); // znxi === intermediate znx
-    Not16(in=zyy, out=znyi); 
+        Not16(in=zxx, out=znxi); // znxi === intermediate znx
+        Not16(in=zyy, out=znyi); 
 
 
-    Mux16(a=x, b=false, sel=zx, out=zxx);
-    Mux16(a=zxx, b=znxi, sel=nx, out=znx); 
-    Mux16(a=y, b=false, sel=zy, out=zyy);
-    Mux16(a=zyy, b=znyi, sel=ny, out=zny);
+        Mux16(a=x, b=false, sel=zx, out=zxx);
+        Mux16(a=zxx, b=znxi, sel=nx, out=znx); 
+        Mux16(a=y, b=false, sel=zy, out=zyy);
+        Mux16(a=zyy, b=znyi, sel=ny, out=zny);
 
-    Add16(a=znx, b=zny, out=xplusy);
-    And16(a=znx, b=zny, out=xandy);
+        Add16(a=znx, b=zny, out=xplusy);
+        And16(a=znx, b=zny, out=xandy);
 
-    Mux16(a=xandy, b=xplusy, sel=f, out=almostout);
+        Mux16(a=xandy, b=xplusy, sel=f, out=almostout);
 
-    Not16(in=almostout, out=notout);
-    Mux16(a=almostout, b=notout, sel=no, out=out, out=flagfull,out[15]=negbit);
+        Not16(in=almostout, out=notout);
+        Mux16(a=almostout, b=notout, sel=no, out=out, out=flagfull,out[15]=negbit);
 
-    And(a=negbit, b=true, out=ng);
-    
-    And16(a=flagfull, b=true, out[0..7]=tmp1, out[8..15]=tmp2);
-    Or8Way(in=tmp1, out=tmp11);
-    Or8Way(in=tmp2, out=tmp22);
-    Or(a=tmp11, b=tmp22, out=tmp11ortmp22);
-    Mux(a=true, b=false, sel=tmp11ortmp22, out=zr);
+        And(a=negbit, b=true, out=ng);
+        
+        And16(a=flagfull, b=true, out[0..7]=tmp1, out[8..15]=tmp2);
+        Or8Way(in=tmp1, out=tmp11);
+        Or8Way(in=tmp2, out=tmp22);
+        Or(a=tmp11, b=tmp22, out=tmp11ortmp22);
+        Mux(a=true, b=false, sel=tmp11ortmp22, out=zr);
 }
