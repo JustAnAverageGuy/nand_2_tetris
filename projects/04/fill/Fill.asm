@@ -12,3 +12,75 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
+(START)
+    @KBD
+    D=M;
+
+    @BLACKEN
+    D;JNE
+
+    @LIGHTEN
+    D;JEQ
+
+    
+    @START // EVEN MORE SAFTEY LOL
+    0;JMP
+
+(BLACKEN)
+
+    @SCREEN
+    D=A;
+
+    @addr
+    M=D;
+
+    (LOOPB)
+        
+        @addr
+        D=M;
+        
+        @KBD
+        D=D-A;
+        @START
+        D;JEQ
+
+        @addr
+        A=M;
+        M=-1;
+        @addr
+        M=M+1;
+
+        @LOOPB
+        0;JMP
+
+
+(LIGHTEN)
+
+    @SCREEN
+    D=A;
+
+    @addr
+    M=D;
+
+    (LOOPD)
+        
+        @addr
+        D=M;
+        
+        @KBD
+        D=D-A;
+        @START
+        D;JEQ
+
+        @addr
+        A=M;
+        M=0;
+        @addr
+        M=M+1;
+
+        @LOOPD
+        0;JMP
+
+(UNREACHABLE)
+    @UNREACHABLE
+    0;JMP
